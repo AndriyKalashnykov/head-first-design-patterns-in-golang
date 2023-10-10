@@ -1,4 +1,4 @@
-package main
+package api
 
 // Declare two reference variables for the behaviour interface types.
 // All duck subclasses inherit these.

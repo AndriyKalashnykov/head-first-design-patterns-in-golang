@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ type pizzaStore struct {
 /**
  * The Pizza Store constructor now takes the reference of the pizza factory
  */
-func newPizzaStore(factory pizzaFactory) *pizzaStore {
+func NewPizzaStore(factory pizzaFactory) *pizzaStore {
 	return &pizzaStore{
 		factory: factory,
 	}
@@ -23,7 +23,7 @@ func newPizzaStore(factory pizzaFactory) *pizzaStore {
 /**
  * We are passing the type of pizza
  */
-func (ps *pizzaStore) orderPizza(pizzaType string) {
+func (ps *pizzaStore) OrderPizza(pizzaType string) {
 	/**
 	 * Now we pass the type to the factory.
 	 * No more concrete instantiations here!

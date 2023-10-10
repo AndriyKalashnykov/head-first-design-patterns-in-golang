@@ -1,63 +1,67 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"head-first-design-patterns-in-golang/5_command/api"
+)
 
 func main() {
-	remoteControl := newRemoteControl()
+	remoteControl := api.NewRemoteControl()
 
 	// Instantiate all the devices
-	livingRoomLight := &light{"Living Room"}
-	kitchenLight := &light{"Kitchen"}
-	ceilingFan := &ceilingFan{"Living Room"}
-	garage := &garage{}
-	stereo := &stereo{"Living Room"}
+	livingRoomLight := &api.Light{"Living Room"}
+	kitchenLight := &api.Light{"Kitchen"}
+	ceilingFan := &api.CeilingFan{"Living Room"}
+	garage := &api.Garage{}
+	stereo := &api.Stereo{"Living Room"}
 
 	// Instantiate all the Command Objects
-	livingRoomLightOn := newLightOnCommand(livingRoomLight)
-	livingRoomLightOff := newLightOffCommand(livingRoomLight)
-	kitchenLightOn := newLightOnCommand(kitchenLight)
-	kitchenLightOff := newLightOffCommand(kitchenLight)
+	livingRoomLightOn := api.NewLightOnCommand(livingRoomLight)
+	livingRoomLightOff := api.NewLightOffCommand(livingRoomLight)
+	kitchenLightOn := api.NewLightOnCommand(kitchenLight)
+	kitchenLightOff := api.NewLightOffCommand(kitchenLight)
 
-	ceilingFanOn := newCeilingFanOnCommand(ceilingFan)
-	ceilingFanOff := newCeilingFanOffCommand(ceilingFan)
+	ceilingFanOn := api.NewCeilingFanOnCommand(ceilingFan)
+	ceilingFanOff := api.NewCeilingFanOffCommand(ceilingFan)
 
-	stereoOnWithCD := newStereoOnCommand(stereo)
-	stereoOff := newStereoOffCommand(stereo)
+	stereoOnWithCD := api.NewStereoOnCommand(stereo)
+	stereoOff := api.NewStereoOffCommand(stereo)
 
-	garageDoorOpen := newGarageDoorOpenCommand(garage)
-	garageDoorClose := newGarageDoorCloseCommand(garage)
+	garageDoorOpen := api.NewGarageDoorOpenCommand(garage)
+	garageDoorClose := api.NewGarageDoorCloseCommand(garage)
 
-	livingRoomOnCommands := []iCommand{livingRoomLightOn, ceilingFanOn, stereoOnWithCD}
-	livingRoomOffCommands := []iCommand{livingRoomLightOff, ceilingFanOff, stereoOff}
-	livingRoomMacroOnCommand := newMacroCommand(livingRoomOnCommands)
-	livingRoomMacroOffCommand := newMacroCommand(livingRoomOffCommands)
+	livingRoomOnCommands := []api.ICommand{livingRoomLightOn, ceilingFanOn, stereoOnWithCD}
+	livingRoomOffCommands := []api.ICommand{livingRoomLightOff, ceilingFanOff, stereoOff}
+	livingRoomMacroOnCommand := api.NewMacroCommand(livingRoomOnCommands)
+	livingRoomMacroOffCommand := api.NewMacroCommand(livingRoomOffCommands)
 
 	// Load commands into the remote slots.
-	remoteControl.setCommand(0, livingRoomLightOn, livingRoomLightOff)
-	remoteControl.setCommand(1, kitchenLightOn, kitchenLightOff)
-	remoteControl.setCommand(2, ceilingFanOn, ceilingFanOff)
-	remoteControl.setCommand(3, stereoOnWithCD, stereoOff)
-	remoteControl.setCommand(4, garageDoorOpen, garageDoorClose)
-	remoteControl.setCommand(5, livingRoomMacroOnCommand, livingRoomMacroOffCommand)
+	remoteControl.SetCommand(0, livingRoomLightOn, livingRoomLightOff)
+	remoteControl.SetCommand(1, kitchenLightOn, kitchenLightOff)
+	remoteControl.SetCommand(2, ceilingFanOn, ceilingFanOff)
+	remoteControl.SetCommand(3, stereoOnWithCD, stereoOff)
+	remoteControl.SetCommand(4, garageDoorOpen, garageDoorClose)
+	remoteControl.SetCommand(5, livingRoomMacroOnCommand, livingRoomMacroOffCommand)
 
 	fmt.Println(remoteControl)
 
 	//  We step through each slot and push its On and Off button.
-	remoteControl.onButtonWasPushed(0)
-	remoteControl.offButtonWasPushed(0)
-	remoteControl.onButtonWasPushed(1)
-	remoteControl.offButtonWasPushed(1)
-	remoteControl.onButtonWasPushed(2)
-	remoteControl.offButtonWasPushed(2)
-	remoteControl.onButtonWasPushed(3)
-	remoteControl.offButtonWasPushed(3)
-	remoteControl.onButtonWasPushed(4)
-	remoteControl.offButtonWasPushed(4)
+	remoteControl.OnButtonWasPushed(0)
+	remoteControl.OffButtonWasPushed(0)
+	remoteControl.OnButtonWasPushed(1)
+	remoteControl.OffButtonWasPushed(1)
+	remoteControl.OnButtonWasPushed(2)
+	remoteControl.OffButtonWasPushed(2)
+	remoteControl.OnButtonWasPushed(3)
+	remoteControl.OffButtonWasPushed(3)
+	remoteControl.OnButtonWasPushed(4)
+	remoteControl.OffButtonWasPushed(4)
 
 	fmt.Println("---Pushing Macro On---")
-	remoteControl.onButtonWasPushed(5)
+	remoteControl.OnButtonWasPushed(5)
 
 	fmt.Println("---Pushing Macro Off---")
-	remoteControl.offButtonWasPushed(5)
+	remoteControl.OffButtonWasPushed(5)
 
 }

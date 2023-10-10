@@ -7,7 +7,7 @@ package main
 //	 * command object that can
 //	 * be used to make requests.
 //	 */
-//	remoteControl := &simpleRemoteControl{}
+//	RemoteControl := &SimpleRemoteControl{}
 //
 //	/**
 //	 * Now we create a Light
@@ -20,26 +20,26 @@ package main
 //	 * Create a command and
 //	 * pass the Receiver to it.
 //	 */
-//	lightOnCommand := newLightOnCommand(light)
+//	lightOnCommand := NewLightOnCommand(light)
 //
 //	/**
 //	 * Pass the command to the Invoker
 //	 */
-//	remoteControl.setCommand(lightOnCommand)
+//	RemoteControl.SetCommand(lightOnCommand)
 //
 //	/**
 //	 * We simulate the button being pressed.
 //	 */
-//	remoteControl.buttonWasPressed()
+//	RemoteControl.ButtonWasPressed()
 //
 //	garage := &garage{}
 //
-//	garageDoorOpenCommand := newGarageDoorOpenCommand(garage)
+//	GarageDoorOpenCommand := newGarageDoorOpenCommand(garage)
 //
 //	/**
 //	 * Pass the new command to the invoker
 //	 */
-//	remoteControl.setCommand(garageDoorOpenCommand)
+//	RemoteControl.SetCommand(GarageDoorOpenCommand)
 //
-//	remoteControl.buttonWasPressed()
+//	RemoteControl.ButtonWasPressed()
 //}

@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"fmt"
@@ -23,9 +23,9 @@ type pizzaFactory interface {
 	createPizza(pizzaType string) (iPizza, error)
 }
 
-type nyPizzaFactory struct{}
+type NyPizzaFactory struct{}
 
-func (nypf *nyPizzaFactory) createPizza(pizzaType string) (iPizza, error) {
+func (nypf *NyPizzaFactory) createPizza(pizzaType string) (iPizza, error) {
 	switch pizzaType {
 	case "cheese":
 		return newCheesePizza(), nil

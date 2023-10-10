@@ -1,7 +1,7 @@
-package main
+package api
 
-type simpleRemoteControl struct {
-	slot iCommand
+type SimpleRemoteControl struct {
+	slot ICommand
 }
 
 /**
@@ -12,7 +12,7 @@ type simpleRemoteControl struct {
  * this code wanted to change the
  * behavior of the remote button.
  */
-func (r *simpleRemoteControl) setCommand(command iCommand) {
+func (r *SimpleRemoteControl) SetCommand(command ICommand) {
 	r.slot = command
 }
 
@@ -20,8 +20,8 @@ func (r *simpleRemoteControl) setCommand(command iCommand) {
  * This method is called when the
  * button is pressed. All we do is take
  * the current command bound to the
- * slot and call its execute() method.
+ * slot and call its Execute() method.
  */
-func (r *simpleRemoteControl) buttonWasPressed() {
-	r.slot.execute()
+func (r *SimpleRemoteControl) ButtonWasPressed() {
+	r.slot.Execute()
 }

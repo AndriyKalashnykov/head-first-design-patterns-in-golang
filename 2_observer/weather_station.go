@@ -1,10 +1,12 @@
 package main
 
-func main() {
-	weatherData := NewWeatherData()
+import "head-first-design-patterns-in-golang/2_observer/api"
 
-	currentConditionsDisplay := NewCurrentConditionsDisplay()
-	statisticsDisplay := NewStatisticsDisplay()
+func main() {
+	weatherData := api.NewWeatherData()
+
+	currentConditionsDisplay := api.NewCurrentConditionsDisplay()
+	statisticsDisplay := api.NewStatisticsDisplay()
 
 	weatherData.RegisterObserver(currentConditionsDisplay)
 	weatherData.RegisterObserver(statisticsDisplay)

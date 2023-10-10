@@ -1,4 +1,4 @@
-package main
+package api
 
 // Subject interface
 type Subject interface {

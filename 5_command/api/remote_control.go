@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"fmt"
@@ -10,44 +10,44 @@ import (
  * handle seven On and Off commands, which
  * we’ll hold in corresponding arrays.
  */
-type remoteControl struct {
-	onCommands, offCommands []iCommand
+type RemoteControl struct {
+	OnCommands, OffCommands []ICommand
 }
 
-func newRemoteControl() *remoteControl {
-	return &remoteControl{
-		onCommands:  make([]iCommand, 7),
-		offCommands: make([]iCommand, 7),
+func NewRemoteControl() *RemoteControl {
+	return &RemoteControl{
+		OnCommands:  make([]ICommand, 7),
+		OffCommands: make([]ICommand, 7),
 	}
 }
 
 /**
- * The setCommand() method takes a slot position
+ * The SetCommand() method takes a slot position
  * and an On and Off command to be stored in
  * that slot. It puts these commands in the on and
  * off arrays for later use
  */
-func (r *remoteControl) setCommand(slot int, onCommand, offCommand iCommand) {
-	r.onCommands[slot] = onCommand
-	r.offCommands[slot] = offCommand
+func (r *RemoteControl) SetCommand(slot int, onCommand, offCommand ICommand) {
+	r.OnCommands[slot] = onCommand
+	r.OffCommands[slot] = offCommand
 }
 
 /**
  * When an On or Off button is
  * pressed, the hardware takes
  * care of calling the corresponding
- * methods onButtonWasPushed() or
- * offButtonWasPushed().
+ * methods OnButtonWasPushed() or
+ * OffButtonWasPushed().
  */
-func (r *remoteControl) onButtonWasPushed(slot int) {
+func (r *RemoteControl) OnButtonWasPushed(slot int) {
 	fmt.Println("*****")
-	r.onCommands[slot].execute()
+	r.OnCommands[slot].Execute()
 	fmt.Println("*****")
 }
 
-func (r *remoteControl) offButtonWasPushed(slot int) {
+func (r *RemoteControl) OffButtonWasPushed(slot int) {
 	fmt.Println("*****")
-	r.offCommands[slot].execute()
+	r.OffCommands[slot].Execute()
 	fmt.Println("*****")
 }
 
@@ -55,16 +55,16 @@ func (r *remoteControl) offButtonWasPushed(slot int) {
  * Implementing String() to print out each slot and its
  * corresponding command.
  */
-func (r *remoteControl) String() string {
+func (r *RemoteControl) String() string {
 	s := fmt.Sprintf("\n------ Remote Control -------\n")
 
-	for i := range r.onCommands {
-		if r.onCommands[i] == nil {
+	for i := range r.OnCommands {
+		if r.OnCommands[i] == nil {
 			continue
 		}
 
-		onClass := r.getClassName(r.onCommands[i])
-		offClass := r.getClassName(r.offCommands[i])
+		onClass := r.GetClassName(r.OnCommands[i])
+		offClass := r.GetClassName(r.OffCommands[i])
 		s += fmt.Sprintf("[slot %d] %s   %s\n", i, onClass, offClass)
 	}
 	s += fmt.Sprintf("-----------------------------\n")
@@ -72,7 +72,7 @@ func (r *remoteControl) String() string {
 	return s
 }
 
-func (r *remoteControl) getClassName(myVar interface{}) string {
+func (r *RemoteControl) GetClassName(myVar interface{}) string {
 	if t := reflect.TypeOf(myVar); t.Kind() == reflect.Ptr {
 		return t.Elem().Name()
 	} else {

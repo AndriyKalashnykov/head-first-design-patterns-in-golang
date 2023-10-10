@@ -1,17 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"head-first-design-patterns-in-golang/6_1_adaptor/api"
+)
 
 func main() {
-	// Creating a duck and a turkey
-	mallardDuck := &mallardDuck{}
+	// Creating a Duck and a Turkey
+	mallardDuck := &api.MallardDuck{}
 
-	wildTurkey := &wildTurkey{}
+	wildTurkey := &api.WildTurkey{}
 
-	// Wrapping the turkey in a turkey adapter, which makes it look like a duck
-	turkeyAdapter := newTurkeyAdaptor(wildTurkey)
+	// Wrapping the Turkey in a Turkey adapter, which makes it look like a Duck
+	turkeyAdapter := api.NewTurkeyAdaptor(wildTurkey)
 
-	// Passing the duck to a method testDuck() which expects a Duck object
+	// Passing the Duck to a method testDuck() which expects a Duck object
 	fmt.Println("The Duck says...")
 	testDuck(mallardDuck)
 
@@ -20,7 +24,7 @@ func main() {
 	testDuck(turkeyAdapter)
 }
 
-func testDuck(d duck) {
-	d.quack()
-	d.fly()
+func testDuck(d api.Duck) {
+	d.Quack()
+	d.Fly()
 }

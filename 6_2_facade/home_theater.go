@@ -1,8 +1,10 @@
 package main
 
-func main() {
-	homeTheater := newHomeTheaterFacade()
+import "head-first-design-patterns-in-golang/6_2_facade/api"
 
-	homeTheater.watchMovie("Raiders of the Lost Ark")
-	homeTheater.endMovie()
+func main() {
+	homeTheater := api.NewHomeTheaterFacade()
+
+	homeTheater.WatchMovie("Raiders of the Lost Ark")
+	homeTheater.EndMovie()
 }

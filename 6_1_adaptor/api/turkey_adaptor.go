@@ -1,15 +1,15 @@
-package main
+package api
 
 /**
  * We need to get a reference to the
  * object we are adapting.
  */
-type turkeyAdapter struct {
-	turkey turkey
+type TurkeyAdapter struct {
+	turkey Turkey
 }
 
-func newTurkeyAdaptor(t turkey) *turkeyAdapter {
-	return &turkeyAdapter{
+func NewTurkeyAdaptor(t Turkey) *TurkeyAdapter {
+	return &TurkeyAdapter{
 		turkey: t,
 	}
 }
@@ -19,12 +19,12 @@ func newTurkeyAdaptor(t turkey) *turkeyAdapter {
  * type you’re adapting to. This is the
  * interface your client expects to see
  */
-func (t *turkeyAdapter) quack() {
-	t.turkey.gobble()
+func (t *TurkeyAdapter) Quack() {
+	t.turkey.Gobble()
 }
 
-func (t *turkeyAdapter) fly() {
+func (t *TurkeyAdapter) Fly() {
 	for i := 1; i <= 5; i++ {
-		t.turkey.fly()
+		t.turkey.Fly()
 	}
 }

@@ -1,10 +1,12 @@
 package main
 
-func main() {
-	nyPizzaFactory := &nyPizzaFactory{}
+import "head-first-design-patterns-in-golang/4_1_simple_factory/api"
 
-	pizzaStore := newPizzaStore(nyPizzaFactory)
-	pizzaStore.orderPizza("pepperoni")
-	pizzaStore.orderPizza("new york cheese")
-	pizzaStore.orderPizza("greek")
+func main() {
+	nyPizzaFactory := &api.NyPizzaFactory{}
+
+	pizzaStore := api.NewPizzaStore(nyPizzaFactory)
+	pizzaStore.OrderPizza("pepperoni")
+	pizzaStore.OrderPizza("new york cheese")
+	pizzaStore.OrderPizza("greek")
 }
